@@ -16,15 +16,12 @@ const dfltPort = 8000;
  */
 function getDefaultModules() {
     return {
-        preLoaders: [
-            {
-                test: /\.(js|jsx)$/,
-                include: srcPath,
-                loader: 'eslint-loader'
-            }
-        ],
-        loaders: [
-            {
+        // preLoaders: [{
+        //     test: /\.(js|jsx)$/,
+        //     include: srcPath,
+        //     loader: 'eslint-loader'
+        // }],
+        loaders: [{
                 test: /\.css$/,
                 loader: 'style-loader!css-loader'
             },
@@ -55,6 +52,15 @@ function getDefaultModules() {
             {
                 test: /\.json$/,
                 loader: 'json-loader'
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+
+                loader: 'babel-loader',
+                options: {
+                    presets: ['es2015', 'react']
+                }
             }
         ]
     };
